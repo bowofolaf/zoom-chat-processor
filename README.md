@@ -1,2 +1,34 @@
-# zoom-chat-processor
-The Zoom Video chat export from meetings isnt usable in any automation context. This library can be used to parse the conversations, and export them in a machine readable format.
+## zoom-chat ![zoom-chat](https://img.shields.io/npm/v/zoom-chat.svg)
+
+> 
+
+### Installation
+
+```bash
+$ npm install zoom-chat
+```
+
+### Example
+
+```js
+const zoomChat = require('zoom-chat');
+
+// your code here
+
+```
+
+### Contributing
+- Fork this Repo first
+- Clone your Repo
+- Install dependencies by `$ npm install`
+- Checkout a feature branch
+- Feel free to add your features
+- Make sure your features are fully tested
+- Publish your local branch, Open a pull request
+- Enjoy hacking <3
+
+### MIT
+
+This work is licensed under the [MIT license](./LICENSE).
+
+---
