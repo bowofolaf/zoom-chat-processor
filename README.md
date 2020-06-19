@@ -1,5 +1,9 @@
 ## zoom-chat ![zoom-chat](https://img.shields.io/npm/v/zoom-chat.svg)
 
+## Description
+
+This library can be used to parse the saved chat export from [Zoom](https://zoom.us/) video meetings described [here](https://support.zoom.us/hc/en-us/articles/115004792763-Saving-in-meeting-chat)
+
 > 
 
 ### Installation
