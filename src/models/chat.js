@@ -1,6 +1,7 @@
 export default class Chat {
 
-    constructor(author, message) {
+    constructor(timestamp, author, message) {
+        this.timestamp = timestamp;
         this.author = author;
         this.message = message;
     }
