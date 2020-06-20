@@ -1,4 +1,4 @@
-import { processChat } from './parse/zoom-chat-parser.js';
+import { processChats } from './parse/zoom-chat-parser.js';
 import JsonExporter from './export/json-exporter.js';
 import CsvExporter from './export/csv-exporter.js';
 
@@ -10,7 +10,7 @@ export function run(chatProcessorOptions) {
         one of the following: ${OUTPUT_CONTENT_TYPES}`)
     }
 
-    processChat(chatProcessorOptions.input)
+    processChats(chatProcessorOptions.input)
         .then(chats => {
             let exporter = getExporter(chatProcessorOptions);
             exporter.write(chats);
