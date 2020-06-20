@@ -3,6 +3,10 @@ import JsonExporter from './export/json-exporter.js';
 import CsvExporter from './export/csv-exporter.js';
 
 export const OUTPUT_CONTENT_TYPES = ['csv', 'json'];
+const EXPORTER_MAP = {
+    csv: (chatProcessorOptions) => new CsvExporter(chatProcessorOptions.group, chatProcessorOptions.outputFile, chatProcessorOptions.delimiter),
+    json: (chatProcessorOptions) => new JsonExporter(chatProcessorOptions.group, chatProcessorOptions.outputFile)
+}
 
 export function run(chatProcessorOptions) {
     if (OUTPUT_CONTENT_TYPES.indexOf(chatProcessorOptions.outputContentType.toLowerCase()) == -1) {
@@ -19,17 +23,14 @@ export function run(chatProcessorOptions) {
 }
 
 function getExporter(chatProcessorOptions) {
-    switch (chatProcessorOptions.outputContentType) {
-        case 'csv':
-            return new CsvExporter(chatProcessorOptions.group, chatProcessorOptions.outputFile, chatProcessorOptions.delimiter);
-            break;
-        case 'json':
-            return new JsonExporter(chatProcessorOptions.group, chatProcessorOptions.outputFile)
-            break;
-        default:
-            throw new Error(`Output content type: [${chatProcessorOptions.outputContentType}] not supported. Please provide
+    let exporterFactory = EXPORTER_MAP[chatProcessorOptions.outputContentType];
+
+    if (!exporterFactory) {
+        throw new Error(`Output content type: [${chatProcessorOptions.outputContentType}] not supported. Please provide
         one of the following: ${OUTPUT_CONTENT_TYPES}`)
     }
+
+    return exporterFactory(chatProcessorOptions);
 }
 
 export class ChatProcessorOptions {
