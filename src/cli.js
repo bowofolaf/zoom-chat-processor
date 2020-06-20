@@ -2,7 +2,7 @@
 import yargs from 'yargs';
 import { run, OUTPUT_CONTENT_TYPES, ChatProcessorOptions } from './app.js'
 
-const DEFAULT_OUTPUT_CONTENT_TYPE = 'csv';
+const DEFAULT_OUTPUT_CONTENT_TYPE = 'json';
 
 const builder = (yargs) => {
     yargs
@@ -23,9 +23,16 @@ const builder = (yargs) => {
         })
         .option('output-content-type', {
             type: 'string',
+            alias: 't',
             describe: 'content type for the output file.',
-            default: 'json',
+            default: DEFAULT_OUTPUT_CONTENT_TYPE,
             choices: OUTPUT_CONTENT_TYPES
+        })
+        .option('delimiter', {
+            type: 'string',
+            alias: 'd',
+            describe: 'delimiter for csv export.',
+            default: ','
         })
 };
 

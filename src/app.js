@@ -11,7 +11,7 @@ const EXPORTER_MAP = {
 export function run(chatProcessorOptions) {
     if (OUTPUT_CONTENT_TYPES.indexOf(chatProcessorOptions.outputContentType.toLowerCase()) == -1) {
         throw new Error(`Output content type: [${chatProcessorOptions.outputContentType}] not supported. Please provide
-        one of the following: ${OUTPUT_CONTENT_TYPES}`)
+        one of the following: ${OUTPUT_CONTENT_TYPES}`);
     }
 
     processChats(chatProcessorOptions.input)
@@ -27,17 +27,18 @@ function getExporter(chatProcessorOptions) {
 
     if (!exporterFactory) {
         throw new Error(`Output content type: [${chatProcessorOptions.outputContentType}] not supported. Please provide
-        one of the following: ${OUTPUT_CONTENT_TYPES}`)
+        one of the following: ${OUTPUT_CONTENT_TYPES}`);
     }
 
     return exporterFactory(chatProcessorOptions);
 }
 
 export class ChatProcessorOptions {
-    constructor(input, outputFile, group, outputContentType) {
+    constructor(input, outputFile, group, outputContentType, delimiter) {
         this.input = input;
         this.outputFile = outputFile;
         this.group = group;
         this.outputContentType = outputContentType;
+        this.delimiter = delimiter
     }
 }
